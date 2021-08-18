@@ -27,6 +27,9 @@ class hayirdir:
     def get_all_linkss(self,source):
         return source.find_all("a",class_='lf-link lf-link--primary')
 
+    def get_all_linkss_song(self,source):
+        return source.find_all("div",class_="lyrictxt js-lyrics js-share-text-content")
+
 
     def get_links(self):
         data = list()
@@ -91,8 +94,38 @@ class hayirdir:
 
 if __name__=='__main__':
     scraper=hayirdir()
-    scraper.get_song_list()
 
-
+    for d in range(30000):
+        try:
+            file = open("data.txt", "r",encoding="utf-8")
+            for o in file:
+                data = o
+                base_url = "https://www.lyricsfreak.com"
+                datas=scraper.get_source(base_url+data)
+                datass=scraper.get_all_linkss_song(datas)
+                f = open("datass.txt", "w")
+                f.write(str(datass))
+                f.close()
+                files = open("datass.txt", "r")
+                files.readline()
+                files.readline()
+                files.readline()
+                for i in files:
+                    print(i[0:len(i)-6])
+                    f = open("song.txt", "a")
+                    f.write(i[0:len(i)-6])
+                f.write("\n")
+                f.close()
+        except:
+            print(data)
+            filee = open("data.txt", "r", encoding="utf-8")
+            dat=filee.read()
+            if data in dat:
+                with open("data.txt", "r") as f:
+                    lines = f.readlines()
+                    with open("data.txt", "w") as f:
+                        for line in lines:
+                            if line!=data:
+                                f.write(line)
 
 
