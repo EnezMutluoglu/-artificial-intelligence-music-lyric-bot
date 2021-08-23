@@ -1,6 +1,7 @@
 import string
 import requests
 from bs4 import BeautifulSoup
+import os
 
 class hayirdir:
     def __init__(self):
@@ -95,9 +96,10 @@ class hayirdir:
 if __name__=='__main__':
     scraper=hayirdir()
 
-    for d in range(30000):
+
+    for d in range(99999):
         try:
-            file = open("data.txt", "r",encoding="utf-8")
+            file = open("veri.txt", "r",encoding="utf-8")
             for o in file:
                 data = o
                 base_url = "https://www.lyricsfreak.com"
@@ -116,6 +118,41 @@ if __name__=='__main__':
                     f.write(i[0:len(i)-6])
                 f.write("\n")
                 f.close()
+                #yy=open("y\\data"+str(d)+".txt","a")
+                #yy.writelines(data)
+                #yy.close()
+                #with open("y\\data" + str(d) + ".txt", "r") as u:
+                #    k = u.readlines()
+                #    print(k)
+                #    with open("y\\data" + str(d - 1) + ".txt", "r") as o:
+                #        kk = o.readlines()
+                #        print(kk)
+                #        for kkk in kk:
+                #            k.remove(kkk)
+                #        print(k)
+                #        fileee = open("y\\data" + str(d) + ".txt", "w")
+                #        fileee.writelines(k)
+                #        u.close()
+                #        o.close()
+                #        fileee.close()
+#
+                #    with open("data.txt", "r") as u:
+                #        k = u.readlines()
+                #        with open("y\\data" + str(d - 1) + ".txt", "r") as o:
+                #            kk = o.readlines()
+                #            print(kk)
+                #            for kkk in kk:
+                #                k.remove(kkk)
+                #                fileeess = open("veri.txt", "a")
+                #                fileeess.writelines(kkk)
+                #            fileees = open("data.txt", "w")
+                #            fileees.writelines(k)
+                #            u.close()
+                #            o.close()
+                #            fileeess.close()
+                #            fileees.close()
+                #    os.remove("y\\data" + str(d - 1) + ".txt")
+
         except:
             print(data)
             filee = open("data.txt", "r", encoding="utf-8")
@@ -127,5 +164,14 @@ if __name__=='__main__':
                         for line in lines:
                             if line!=data:
                                 f.write(line)
+
+            #with open("data.txt","r")as dosya:
+            #    q=dosya.readlines()
+            #    with open("data"+str(d)+".txt","r") as v:
+            #        w=v.readlines()
+            #        for e in w:
+            #            q.remove(e)
+            #        with open("data.txt","w") as u:
+            #            u.writelines(q)
 
 
