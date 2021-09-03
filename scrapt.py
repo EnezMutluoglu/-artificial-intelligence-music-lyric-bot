@@ -3,6 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 import os
 
+import psycopg2
+
+
+
 class hayirdir:
     def __init__(self):
         self.base_url = "https://www.lyricsfreak.com"
@@ -97,7 +101,7 @@ if __name__=='__main__':
     scraper=hayirdir()
 
 
-    for d in range(99999):
+    for d in range(60):
         try:
             file = open("veri.txt", "r",encoding="utf-8")
             for o in file:
@@ -116,62 +120,57 @@ if __name__=='__main__':
                     print(i[0:len(i)-6])
                     f = open("song.txt", "a")
                     f.write(i[0:len(i)-6])
-                f.write("\n")
-                f.close()
-                #yy=open("y\\data"+str(d)+".txt","a")
-                #yy.writelines(data)
-                #yy.close()
-                #with open("y\\data" + str(d) + ".txt", "r") as u:
-                #    k = u.readlines()
-                #    print(k)
-                #    with open("y\\data" + str(d - 1) + ".txt", "r") as o:
-                #        kk = o.readlines()
-                #        print(kk)
-                #        for kkk in kk:
-                #            k.remove(kkk)
-                #        print(k)
-                #        fileee = open("y\\data" + str(d) + ".txt", "w")
-                #        fileee.writelines(k)
-                #        u.close()
-                #        o.close()
-                #        fileee.close()
+
+
+
+                #f = open("song.txt", "r", encoding="utf-8")
+                #song=f.readline()
 #
-                #    with open("data.txt", "r") as u:
-                #        k = u.readlines()
-                #        with open("y\\data" + str(d - 1) + ".txt", "r") as o:
-                #            kk = o.readlines()
-                #            print(kk)
-                #            for kkk in kk:
-                #                k.remove(kkk)
-                #                fileeess = open("veri.txt", "a")
-                #                fileeess.writelines(kkk)
-                #            fileees = open("data.txt", "w")
-                #            fileees.writelines(k)
-                #            u.close()
-                #            o.close()
-                #            fileeess.close()
-                #            fileees.close()
-                #    os.remove("y\\data" + str(d - 1) + ".txt")
+                #f.close()
+                #f = open("song.txt", "w", encoding="utf-8")
+                f.writelines("\n")
+                f.close()
+#
+                #conn = psycopg2.connect(
+                #    host="localhost",
+                #    port="7114",
+                #    database="deneme",
+                #    user="postgres",
+                #    password="145356")
+                #cursor = conn.cursor()
+#
+                #postgres_insert_query = """ INSERT INTO comp_first (url, song) VALUES (%s,%s)"""
+                #record_to_insert = (base_url + data, song)
+                #cursor.execute(postgres_insert_query)
+                #conn.commit()
+
+
+
+
+                filees = open("veri.txt", "r", encoding="utf-8")
+                datt = filees.read()
+                if data in datt:
+                    with open("veri.txt", "r") as f:
+                        lines = f.readlines()
+                        with open("veri.txt", "w") as f:
+                            for line in lines:
+                                if line != data:
+                                    f.write(line)
+
+
 
         except:
             print(data)
-            filee = open("data.txt", "r", encoding="utf-8")
+            filee = open("veri.txt", "r", encoding="utf-8")
             dat=filee.read()
             if data in dat:
-                with open("data.txt", "r") as f:
+                with open("veri.txt", "r") as f:
                     lines = f.readlines()
-                    with open("data.txt", "w") as f:
+                    with open("veri.txt", "w") as f:
                         for line in lines:
                             if line!=data:
                                 f.write(line)
 
-            #with open("data.txt","r")as dosya:
-            #    q=dosya.readlines()
-            #    with open("data"+str(d)+".txt","r") as v:
-            #        w=v.readlines()
-            #        for e in w:
-            #            q.remove(e)
-            #        with open("data.txt","w") as u:
-            #            u.writelines(q)
+
 
 
